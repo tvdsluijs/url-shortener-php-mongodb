@@ -1,0 +1,20 @@
+Original by Brian Cray
+http://briancray.com/posts/free-php-url-shortener-script/
+
+Rewritten by Theo van der Sluijs for usage with MongoDB
+http://www.vandersluijs.nl
+http://blog.vandersluijs.nl
+
+Date: 03/02/15
+
+Usage:
+
+Just put the files on your server. Set the config for your usage.
+You only need to have a server with MongoDB and PHP installed.
+No need to create databases or collections.
+
+Have fun!
+
+Any Questions?
+
+Just Ask!
