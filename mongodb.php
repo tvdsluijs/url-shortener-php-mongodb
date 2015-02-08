@@ -242,9 +242,9 @@ class M_DB
             $data = $g['result'];
 
             //keep number of visits?
-            if (TRACK) {
-                $visits = 1 + $data['visits'];
-                $g->update(array('visits' => $visits));
+            if (TRACK && isset($data[0]['visits'])) {
+                $visits = 1 + $data[0]['visits'];
+                $this->_collection->update(array("url_id" => $short_url), array('$set' => array("visits" => $visits)));
             }
 
             unset($g);
