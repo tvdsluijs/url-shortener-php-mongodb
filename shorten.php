@@ -30,7 +30,7 @@ if(!empty($url_to_shorten) && preg_match('|^https?://|', $url_to_shorten))
 {
 
 	// check if the client IP is allowed to shorten
-	if(isset($LIMIT_TO_IP) && in_array($_SERVER['REMOTE_ADDR'], $LIMIT_TO_IP))
+	if(!isset($LIMIT_TO_IP) && in_array($_SERVER['REMOTE_ADDR'], $LIMIT_TO_IP))
 	{
 		die('You are not allowed to shorten URLs with this service.');
 	}
