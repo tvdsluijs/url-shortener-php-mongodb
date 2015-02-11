@@ -68,6 +68,8 @@ foreach($Clicks_last_seven_days_array as $value){
 $Clicks_last_seven_days = implode(',', $Clicks_last_seven_days);
 
 $last_months_urls_clicks = $M_DB_C->getNrRecordsPerDay();
+
+$last_months_urls_clicks_dates = array();
 foreach ($last_months_urls_clicks as $value) {
     $last_months_urls_clicks_dates[$value['_id']] = $value['_id'];
     $last_months_urls_clicks_nr[$value['_id']] = $value['count'];
@@ -82,6 +84,7 @@ foreach ($last_monts_urls_nrs_dates as $dates) {
 $last_eight_days_clicks = $M_DB_C->getNrRecords($eightDaysAgo, $yesterDay);
 $last_eight_days_clicks_p_d = $M_DB_C->getNrRecordsPerDay($eightDaysAgo, $yesterDay);
 
+$Urls_last_seven_days = array();
 foreach($last_eight_days_clicks_p_d as $value){
     $weekday = date('l', strtotime($value['_id']));
     $Urls_last_seven_days[] = "['{$weekday}', {$value['count']}]";
