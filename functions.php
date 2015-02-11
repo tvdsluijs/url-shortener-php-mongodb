@@ -6,6 +6,8 @@
  * Time: 21:52
  */
 
+defined('_SHORT_INCLUDE_ONLY') or die(header('HTTP/1.0 404 Not Found'));
+
 if(SHOW_ERRORS){
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
@@ -31,4 +33,12 @@ function print_pre($arg, $title = '')
     }
     print_r($arg);
     echo "</pre>";
+}
+
+function formatBytes($size, $precision = 2)
+{
+    $base = log($size) / log(1024);
+    $suffixes = array('', 'k', 'M', 'G', 'T');
+
+    return round(pow(1024, $base - floor($base)), $precision) . $suffixes[floor($base)];
 }
