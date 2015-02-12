@@ -9,13 +9,15 @@ http://blog.vandersluijs.nl
 
 Date: 03/02/15
 
-Usage:
+Backend theme by Carlos Alvarez
+Site: http://Alvarez.is
 
 created a backend in the /backend/index.php . 
 You can even create some fakeData to test the backend
 
 /backend/fakeData.php (there is a test txt file with some urls, or create your own url)
 
+Usage:
 Just put the files on your server. Set the config for your usage.
 You only need to have a server with MongoDB and PHP installed.
 No need to create databases or collections.
