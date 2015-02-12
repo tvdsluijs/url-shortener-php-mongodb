@@ -12,7 +12,6 @@ date_default_timezone_set('Europe/Amsterdam');
 require_once('../config.php');
 $time_start = microtime(true);
 /**
- * THERE IS ALREADY A TEST FILE THAT YOU CAN USE !!
  * usage
  * create a sitemap from any site with
  * https://www.xml-sitemaps.com/
@@ -21,11 +20,11 @@ $time_start = microtime(true);
  * After the import is done, the import txt file will be renamed so you cannot import it twice
  */
 /** CONFIG */
-$startDateInt = strtotime ( '-2 month' , strtotime ( date('Y-m-d') )) ; //today two months ago
+$startDateInt = strtotime ( '-2 month' , strtotime ( date('Y-m-01') )) ; //today two months ago
 $startDate =  date('Y-m-d', $startDateInt) ;//today last month
 
 $endDateInt =  strtotime ( '+1 day' , strtotime ( date('Y-m-d') )) ;  //today
-$endDate = date('Y-m-d',$endDateInt);    //today
+$endDate = date('Y-m-d', $endDateInt);    //today
 
 $filename = "urllist.txt";
 
@@ -52,12 +51,13 @@ $c = 0;
 
 //lets create some fake url data
 foreach($contents as $long_url) {
+
     $u++; //lets keep the number of added urls
     $newDateInt = mt_rand($startDateInt,$endDateInt);
     $newDate = date('Y-m-d',$newDateInt);
 
     //number of fake clicks
-    $fakeClicks = mt_rand(0,250);
+    $fakeClicks = mt_rand(35,125);
 
     $url_data = $M_DB->insertUrl($long_url, null, $newDateInt, $fakeClicks);
 
@@ -65,8 +65,15 @@ foreach($contents as $long_url) {
     for($i=0;$i<=$fakeClicks;$i++){
         $c++; //lets keep the number of added clicks
 
+        $endClickDateInt = strtotime ( '+1 month' , $newDateInt) ; //today two months ago
+
+        if($endClickDateInt > $endDateInt){
+            $endClickDateInt = $endDateInt;
+        }
+
         //use $newDateInt as start date as it cannot be before the that creation date!
-        $click_date_int = mt_rand($newDateInt,$endDateInt);
+        $click_date_int = mt_rand($newDateInt,$endClickDateInt);
+
         $click_date = date('Y-m-d',$click_date_int);
 
         $click = array();
@@ -88,6 +95,8 @@ $time_end = microtime(true);
 $time = $time_end - $time_start;
 
 echo "All Done!<br/>";
+echo "{$startDate} = Start Date!<br/>";
+echo "{$endDate} = End Date!<br/>";
 echo "Added {$u} URLS!<br/>";
 echo "Added {$c} Clicks!<br/>";
 echo "Renamed the file to {$renamed_file}!!!<br/>";
