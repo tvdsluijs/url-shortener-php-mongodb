@@ -53,10 +53,7 @@ if(isset($url_data['long_url']) && $url_data['long_url'] != ''){
 	}
 }
 
-if(false){ //
 
-}else{
-	header('HTTP/1.1 301 Moved Permanently');
-	header('Location: ' .  $url_data['long_url']);
-	exit;
-}
+header('HTTP/1.1 301 Moved Permanently');
+header('Location: ' .  $url_data['long_url']);
+exit;

@@ -35,7 +35,8 @@ define('MONGO_COLLECTION_CLICKS', 'short_url_click'); //should be the click coll
 define('FAKE_URL_FRONTPAGE_COUNT', TRUE); //just for the few couple of months to show some fake counts
 define('SHOW_URL_FRONTPAGE_COUNT', TRUE); //show frontpage counts?
 
-define('SHOW_OWN_SHORT_FIELD', TRUE); //show frontpage counts?
+define('SHOW_OWN_SHORT_FIELD', TRUE); //show frontpage shorter?
+$SHOW_OWN_SHORT_FIELDBY_IP = array(); //show frontpage short? //or NULL for not!
 
 define('BACKGROUND_IMAGE', 'link to your own image'); //background image
 

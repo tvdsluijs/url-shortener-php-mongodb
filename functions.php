@@ -14,6 +14,34 @@ if(SHOW_ERRORS){
 }
 
 /**
+ * function to check if ip is okay!
+ * @param $ips
+ * @return bool
+ */
+function allowedIP($ips){
+
+    //check if there is a x forwarded remote address ip (varnish nginx)
+    if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])){
+        if(in_array($_SERVER['HTTP_X_FORWARDED_FOR'], $ips)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //check if there is a normal remote address ip
+    if(isset($_SERVER['REMOTE_ADDR'])){
+        if(in_array($_SERVER['REMOTE_ADDR'], $ips)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //nothing? Then false!
+    return false;
+}
+
+/**
  * Like a var dump but better for arrays
  * @param $arg
  * @param string $title
@@ -35,6 +63,12 @@ function print_pre($arg, $title = '')
     echo "</pre>";
 }
 
+/**
+ * function to show size of file
+ * @param $size
+ * @param int $precision
+ * @return string
+ */
 function formatBytes($size, $precision = 2)
 {
     $base = log($size) / log(1024);

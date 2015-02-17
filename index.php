@@ -13,7 +13,7 @@ if(SHOW_ERRORS){
 require_once('functions.php');
 require_once('mongodb.php');
 
-if(isset($LIMIT_TO_IP) && !in_array($_SERVER['REMOTE_ADDR'], $LIMIT_TO_IP))
+if(isset($LIMIT_TO_IP) && !allowedIP($LIMIT_TO_IP))
 {
     header("HTTP/1.0 404 Not Found");
     die();
@@ -113,7 +113,7 @@ $nr = number_format($nr, 0, ',', '.');
                        placeholder="http://Your Url" autocomplete="off">
 
                 <?php
-                if (SHOW_OWN_SHORT_FIELD) {
+                if ((isset($SHOW_OWN_SHORT_FIELD) && $SHOW_OWN_SHORT_FIELD == true) || (isset($SHOW_OWN_SHORT_FIELDBY_IP) && allowedIP($SHOW_OWN_SHORT_FIELDBY_IP))) {
                     ?>
                     <br/><label for="longurl"><?php echo BASE_HREF?></label>
                     <input type="text" class="form-control" style="min-width:150px" name="shorturl" id="shorturl"

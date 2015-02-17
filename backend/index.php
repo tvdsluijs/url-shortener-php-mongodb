@@ -23,7 +23,7 @@ if (SHOW_ERRORS) {
 require_once('../functions.php');
 require_once('../mongodb.php');
 
-if (isset($LIMIT_BACKEND_TO_IP) && !in_array($_SERVER['REMOTE_ADDR'], $LIMIT_BACKEND_TO_IP)) {
+if (isset($LIMIT_BACKEND_TO_IP) && !allowedIP($LIMIT_BACKEND_TO_IP)) {
     header("HTTP/1.0 404 Not Found");
     die();
 }
