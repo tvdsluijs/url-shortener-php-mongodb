@@ -18,6 +18,8 @@ if(SHOW_ERRORS){
 	ini_set('display_errors', '1');
 }
 
+$output = (isset($_REQUEST['output'])) ? $_REQUEST['output'] : PLAIN_TEXT ;
+
 $url_to_shorten = null;
 if(isset($_REQUEST['longurl'])){
 	$url_to_shorten = (string) trim($_REQUEST['longurl']);
@@ -33,9 +35,20 @@ if(!empty($url_to_shorten) && preg_match('|^https?://|', $url_to_shorten))
 	// check if the client IP is allowed to shorten
 	if(isset($LIMIT_SHORTEN_TO_IP) && !allowedIP($LIMIT_SHORTEN_TO_IP))
 	{
-		die('Sorry, you are not allowed to shorten URLs with this service.');
+		switch($output){
+			case PLAIN_TEXT:
+				die(NOT_ALLOWED_TO_SHORTEN);
+				break;
+			case JSON:
+				$outcome['warning'] = NOT_ALLOWED_TO_SHORTEN;
+				die(json_encode($outcome));
+				break;
+			default:
+				die(HOUSTON_PROBLEM);
+				break;
+		}
 	}
-	
+
 	// check if the URL is valid
 	if(CHECK_URL)
 	{
@@ -47,7 +60,18 @@ if(!empty($url_to_shorten) && preg_match('|^https?://|', $url_to_shorten))
 		curl_close($ch);
 		if($response_status == '404')
 		{
-			die(URL_NOT_RESPONSIVE_MESSAGE);
+			switch($output){
+				case PLAIN_TEXT:
+					die(URL_NOT_RESPONSIVE_MESSAGE);
+					break;
+				case JSON:
+					$outcome['warning'] = URL_NOT_RESPONSIVE_MESSAGE;
+					die(json_encode($outcome));
+					break;
+				default:
+					die(HOUSTON_PROBLEM);
+					break;
+			}
 		}
 	}
 
@@ -56,16 +80,52 @@ if(!empty($url_to_shorten) && preg_match('|^https?://|', $url_to_shorten))
 	$url_data = $M_DB->getLongUrl($shortUrl);
 
 	if(isset($url_data) && isset($url_data['long_url'])){
-		die(SHORT_URL_EXISTS);
+		switch($output){
+			case PLAIN_TEXT:
+				die(SHORT_URL_EXISTS);
+				break;
+			case JSON:
+				$outcome['warning'] = SHORT_URL_EXISTS;
+				break;
+			default:
+				die(HOUSTON_PROBLEM);
+				break;
+		}
 	}
 
 	$url_data = $M_DB->getShortUrl($url_to_shorten);
 
-	if(!isset($url_data['short_url']) || $url_data['short_url'] == '')
+	if(!isset($url_data['short_url']) || $url_data['short_url'] == '' || (isset($shortUrl) && $url_data['short_url'] != $shortUrl))
 	{
 		$url_data = $M_DB->insertUrl($url_to_shorten, $shortUrl);
 	}
-	echo BASE_HREF . $url_data['short_url'];
+
+
+	switch($output){
+		case PLAIN_TEXT:
+			echo BASE_HREF . $url_data['short_url'];
+			break;
+		case JSON:
+			$outcome['short_url'] = BASE_HREF . $url_data['short_url'];
+			die(json_encode($outcome));
+			break;
+		default:
+			die(HOUSTON_PROBLEM);
+			break;
+	}
 }else{
-	die('URL_NOT_RIGHT');
+
+	switch($output){
+		case PLAIN_TEXT:
+			die(URL_NOT_RIGHT);
+			break;
+		case JSON:
+			$outcome['warning'] = URL_NOT_RIGHT;
+			die(json_encode($outcome));
+			break;
+		default:
+			die(HOUSTON_PROBLEM);
+			break;
+	}
+
 }

@@ -28,6 +28,17 @@ define('MONGO_DB_NAME', 'urls');
 define('SITE_TITLE', 'Your own Url Shortener');
 define('SITE_SUBTITLE', 'Your own Url Shortener');
 
+define('SITE_AUTHOR', 'Dok.onl');
+define('SITE_DECRIPTION', 'Europe\'s first free URL Shortener');
+
+define('NOT_ALLOWED_TO_SHORTEN', 'Sorry, you are not allowed to shorten URLs with this service.');
+define('HOUSTON_PROBLEM', 'Houston, we have a problem!');
+define('URL_NOT_RIGHT', 'Unable to shorten that link. It is not a valid url.');
+
+//output definition
+define('PLAIN_TEXT', 0);
+define('JSON', 1);
+
 //what are the collection names?
 define('MONGO_COLLECTION_MAIN', 'short_urls'); //should be the main collection
 define('MONGO_COLLECTION_CLICKS', 'short_url_click'); //should be the click collection
@@ -64,4 +75,3 @@ define('SHOW_ERRORS', TRUE);
 
 define('URL_NOT_RESPONSIVE_MESSAGE', 'We have a unresponsive URL! 404!!!');
 define('SHORT_URL_EXISTS', 'Sorry, that short URL already exists!!');
-define('URL_NOT_RIGHT', 'Houston we have a wrong URL!!');

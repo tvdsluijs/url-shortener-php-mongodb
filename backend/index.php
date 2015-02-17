@@ -99,7 +99,7 @@ require_once('backend_functions.php');
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="assets/img/logo30.png" alt=""> <?php echo SITE_NAME; ?>
+            <a class="navbar-brand" href="index.php"><img src="assets/img/logo30.png" alt=""> <?php echo SITE_NAME; ?>
                 Dashboard</a>
         </div>
         <div class="navbar-collapse collapse">
