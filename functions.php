@@ -18,7 +18,10 @@ if(SHOW_ERRORS){
  * @param $ips
  * @return bool
  */
-function allowedIP($ips){
+function allowedIP($ips = null){
+    if(!isset($ips)){ //blijkbaar null dus dan is het ok
+        return true;
+    }
 
     //check if there is a x forwarded remote address ip (varnish nginx)
     if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])){

@@ -1,16 +1,12 @@
+Please donate a coffee, to keep me coding on this url shortner !!!
+Bitcoin : 18aJm8qj47iafT5gTgHrBAXzboDS8jEfZM
+Paypal : http://snurl.eu/coffee
+
 Wanna see it work? http://snurl.eu/
 
-**Original by Brian Cray**
-http://briancray.com/posts/free-php-url-shortener-script/
-
-Rewritten by **Theo van der Sluijs** for usage with MongoDB
+Build by **Theo van der Sluijs** for usage with MongoDB
 http://www.vandersluijs.nl
 http://blog.vandersluijs.nl
-
-Date: 03/02/15
-
-Backend theme by Carlos Alvarez
-Site: http://Alvarez.is
 
 created a backend in the /backend/index.php . 
 You can even create some fakeData to test the backend
@@ -27,3 +23,14 @@ Have fun!
 Any Questions?
 
 Just Ask!
+info@ts-intermedia.nl
+
+
+
+
+
+**Original by Brian Cray**
+http://briancray.com/posts/free-php-url-shortener-script/
+
+**Backend theme by Carlos Alvarez**
+Site: http://Alvarez.is

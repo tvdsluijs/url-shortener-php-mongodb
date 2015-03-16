@@ -155,7 +155,7 @@ class M_DB
     function mongoDbStats(){
         /* @var _collection MongoDB */
         return $this->_db->command(array('dbStats' => 1));
-       //return $this->_collection->
+        //return $this->_collection->
 
     }
 
@@ -173,7 +173,7 @@ class M_DB
 
             if (isset($url_data['short_url']) && $url_data['short_url'] != ''
                 &&
-                (!isset($short_url) || $short_url != $url_data['short_url'])) {
+                (!isset($short_url) || $short_url == $url_data['short_url'])) {
                 //when a short url already exists with this long url
                 //or when a short_url is given and it is the same as the short url from mongo
                 return $url_data;
@@ -255,7 +255,9 @@ class M_DB
     {
         if(isset($startdate) && !isset($enddate)){
             //only today
+
             $enddate = $startdate+(60 * 60 * 24); //plus one day!
+
             $ops[]['$match']['$and'][]['created'] = array('$gte' => $startdate,'$lte' => $enddate);
             $ops[]['$group'] = array('_id' => NULL, 'count' => array('$sum' => 1));
 

@@ -129,7 +129,7 @@ $nr = number_format($nr, 0, ',', '.');
                        placeholder="http://Your Url" autocomplete="off">
 
                 <?php
-                if ((isset($SHOW_OWN_SHORT_FIELD) && $SHOW_OWN_SHORT_FIELD == true) || (isset($SHOW_OWN_SHORT_FIELDBY_IP) && allowedIP($SHOW_OWN_SHORT_FIELDBY_IP))) {
+                if (SHOW_OWN_SHORT_FIELD == true && allowedIP($SHOW_OWN_SHORT_FIELDBY_IP)) {
                     ?>
                     <br/><label for="longurl"><?php echo BASE_HREF ?></label>
                     <input type="text" class="form-control" style="min-width:150px" name="shorturl" id="shorturl"

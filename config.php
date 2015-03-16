@@ -2,8 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: theovandersluijs
- * Date: 03/02/15
- * Time: 21:52
+ * email: info@ts-intermedia.nl
+ * Date: 16/03/15
+ * Please donate a coffee, to keep me coding on this url shortner !!!
+ * Bitcoin : 18aJm8qj47iafT5gTgHrBAXzboDS8jEfZM
+ * Paypal : http://snurl.eu/coffee
  */
 defined('_SHORT_INCLUDE_ONLY') or die(header('HTTP/1.0 404 Not Found'));
 
@@ -28,8 +31,8 @@ define('MONGO_DB_NAME', 'urls');
 define('SITE_TITLE', 'Your own Url Shortener');
 define('SITE_SUBTITLE', 'Your own Url Shortener');
 
-define('SITE_AUTHOR', 'Dok.onl');
-define('SITE_DECRIPTION', 'Europe\'s first free URL Shortener');
+define('SITE_AUTHOR', 'Your own author name');
+define('SITE_DECRIPTION', 'Your own site description');
 
 define('NOT_ALLOWED_TO_SHORTEN', 'Sorry, you are not allowed to shorten URLs with this service.');
 define('HOUSTON_PROBLEM', 'Houston, we have a problem!');
