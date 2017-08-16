@@ -50,7 +50,7 @@ define('FAKE_URL_FRONTPAGE_COUNT', TRUE); //just for the few couple of months to
 define('SHOW_URL_FRONTPAGE_COUNT', TRUE); //show frontpage counts?
 
 define('SHOW_OWN_SHORT_FIELD', TRUE); //show frontpage shorter?
-$SHOW_OWN_SHORT_FIELDBY_IP = array(); //show frontpage short? //or NULL for not!
+$SHOW_OWN_SHORT_FIELDBY_IP = NULL; //array(); //show frontpage short? //or NULL for not!
 
 define('BACKGROUND_IMAGE', 'link to your own image'); //background image
 
